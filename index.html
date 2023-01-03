@@ -56,6 +56,19 @@
             changeColor(-1);
         }
     });
+    document.addEventListener("contextmenu", e => {
+        if (document.fullscreenElement) {
+            e.preventDefault();
+            return false;
+        }
+    });
+    document.addEventListener("mousedown", e => {
+        if (document.fullscreenElement && e.button === 2) {
+            document.exitFullscreen();
+            e.preventDefault();
+            return false;
+        }
+    });
     document.addEventListener('fullscreenchange', function (e) {
         if (!document.fullscreenElement) {
             document.querySelector("#info").style.display = "";
@@ -67,12 +80,13 @@
 </script>
 
 <body class="father">
-    <div id="info" class="son" style="text-align: center;">
-        <h1>Screen Test</h1>
-        <h4>Click/Space: Start Test</h4>
-        <h4>←/→: Previous/Next Color</h4>
-        <h4>Esc: Exit</h4>
-    </div>
+<div id="info" class="son" style="text-align: center;">
+    <h1>Screen Test</h1>
+    <h4>Click/Space: Start Test</h4>
+    <h4>Click/→: Next Color</h4>
+    <h4>←: Previous Color</h4>
+    <h4>Esc/Right Click: Exit</h4>
+</div>
 </body>
 
 </html>
